@@ -27,8 +27,8 @@ public class Network {
 	}
 
 	public void feedForward(Vector<Double> inputVals) {
-		assert (inputVals.size() == layers.size() - 1);
-
+		assert (inputVals.size() == layers.get(0).size() - 1);
+		
 		// Assign the input values into the input neurons
 		for (int i = 0; i < inputVals.size(); i++) {
 			layers.get(0).get(i).setOutputVal(inputVals.get(i));
