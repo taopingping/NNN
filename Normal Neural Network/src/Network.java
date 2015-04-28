@@ -52,9 +52,9 @@ public class Network {
 		for (int neuronNum = 0; neuronNum < outputLayer.size() - 1; neuronNum++) {
 			double delta = targetVals.get(neuronNum)
 					- outputLayer.get(neuronNum).getOutputVal();
-			error = delta * delta;
+			error += delta * delta;
 		}
-		error /= outputLayer.size() - 1;// Get average error squared
+		error /= (outputLayer.size() - 1);// Get average error squared
 		error = Math.sqrt(error); // RMS
 
 		// Implement a recent average
