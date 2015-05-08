@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import pj.neuralnetwork.Main;
+import pj.specifiednetwork.Main;
 
 public class NNVisualisation extends JPanel {
 	public Main main;

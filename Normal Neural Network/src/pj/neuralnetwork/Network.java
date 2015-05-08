@@ -8,7 +8,7 @@ public class Network {
 	private double recentAverageError;
 	private double recentAverageSmoothingFactor;
 
-	public Network(Vector<Integer> topology) {
+	public Network(Vector<Integer> topology, double bias) {
 		int numLayers = topology.size();
 		for (int layerNum = 0; layerNum < numLayers; layerNum++) {
 			// init a new Layer
@@ -20,10 +20,14 @@ public class Network {
 					.get(layerNum + 1);
 
 			// init new Neurons of one new Layer with bias
-			for (int neuronNum = 0; neuronNum <= topology.get(layerNum); neuronNum++) {
+			int neuronNum;
+			for (neuronNum = 0; neuronNum <= topology.get(layerNum); neuronNum++) {
 				layers.lastElement().add(new Neuron(numOutputs, neuronNum));
 				System.out.println("Made Neuron: " + (neuronNum + 1));
 			}
+			
+			// init Output Value of bias
+			layers.lastElement().lastElement().setOutputVal(bias);
 		}
 	}
 
@@ -62,7 +66,7 @@ public class Network {
 
 		recentAverageError = (recentAverageError * recentAverageSmoothingFactor + error)
 				/ (recentAverageSmoothingFactor + 1.0);
-
+		System.out.println("Recent Average Error: "+String.format("%.2f", recentAverageError));
 		// Calculate output layer gradients
 
 		for (int neuronNum = 0; neuronNum < outputLayer.size() - 1; neuronNum++) {

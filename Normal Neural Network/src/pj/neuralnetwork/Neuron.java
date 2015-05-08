@@ -20,10 +20,10 @@ public class Neuron {
 	}
 
 	static private double randomWeight() {
-		return Math.random() * Double.MAX_VALUE;
+		return Math.random();
 	}
 
-	public void setOutputVal(Double outputVal) {
+	public void setOutputVal(double outputVal) {
 		this.outputVal = outputVal;
 	}
 
@@ -43,16 +43,23 @@ public class Neuron {
 					* prevLayer.get(neuronNum).outputWeights.get(myIndex)
 							.getWeight();
 		}
+
+		//System.out.println("sum: "+sum);
 		outputVal = transferFunction(sum);
+		//System.out.println("outputVal: "+outputVal);
 	}
 
 	static private double transferFunction(double x) {
 		// tanh - output range[-1, 0..1,0]
-		return Math.tanh(x);
+		double tanhf = Math.tanh(x);
+		//System.out.println("tanhf: "+tanhf);
+		
+		return tanhf;
 	}
 
 	static private double transferFunctionDerivative(double x) {
 		// tanh derivative
+		//System.out.println("transferFunctionDerivative: "+(1.0-x*x));
 		return 1.0 - x * x;
 	}
 
@@ -60,9 +67,11 @@ public class Neuron {
 		return outputWeights;
 	}
 
-	public void calcOutputGradients(Double targetVal) {
+	public void calcOutputGradients(double targetVal) {
 		double delta = targetVal - outputVal;
+		//System.out.println("delta: "+delta);
 		gradient = delta * transferFunctionDerivative(outputVal);
+		//System.out.println("gradient: "+gradient);
 	}
 
 	public void calcHiddenGradients(Vector<Neuron> nextLayer) {
@@ -104,6 +113,5 @@ public class Neuron {
 					.setDeltaWeight(newDeltaWeight);
 			neuron.getOutputWeights().get(myIndex).addWeight(newDeltaWeight);
 		}
-
 	}
 }

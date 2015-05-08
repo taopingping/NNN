@@ -62,7 +62,7 @@ public class TrainingSets {
 		String set = "";
 		int input1, input2;
 		int targetOutput;
-		int numSets = 2000;
+		int numSets = 4000;
 		
 		for(int setNum=0;setNum<numSets;setNum++) {
 			input1 = generateRandomValue(0,1);
