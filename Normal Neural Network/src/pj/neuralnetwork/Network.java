@@ -55,7 +55,7 @@ public class Network {
 					- outputLayer.get(neuronNum).getOutputVal();
 			error += delta * delta;
 		}
-		error /= (outputLayer.size() - 1);// Get average error squared
+		error /= (outputLayer.size() - 1); // Get average error squared
 		error = Math.sqrt(error); // RMS
 
 		// Implement a recent average

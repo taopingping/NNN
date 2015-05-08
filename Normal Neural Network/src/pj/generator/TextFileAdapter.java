@@ -50,8 +50,8 @@ public class TextFileAdapter {
 	}
 	
 	public static String readTextFile(String fileName) {
-		String line = null;
-        String lines = null;
+		String line;
+        String lines = "";
 
         try {
             FileReader fileReader = new FileReader(relativOutputPath+fileName);
@@ -63,13 +63,10 @@ public class TextFileAdapter {
                 System.out.println(line);
             }  
             bufferedReader.close();            
-        }
-        
-        catch(FileNotFoundException ex) {
+        } catch(FileNotFoundException ex) {
             System.out.println(
                 "Unable to open file '"+fileName+"'");
-        }
-        catch(IOException ex) {
+        } catch(IOException ex) {
             System.out.println(
                 "Error reading file '"+fileName+"'");
         }
@@ -90,5 +87,16 @@ public class TextFileAdapter {
 		} catch (IOException e) {
 			System.err.println("Error clearing " + file.toString());
 		}
+	}
+	
+	public static int[][] convertToIntArray(String text, int rows, int cols) {
+		System.out.println(text);
+		int[][] intArray = new int[rows][cols];
+		for(int row=0;row<rows;row++) {
+			for(int col=0;col<cols;col++) {
+				intArray[row][col] = text.charAt(((row*cols)+col)*2)-48;
+			}
+		}
+		return intArray;
 	}
 }
