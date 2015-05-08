@@ -1,3 +1,4 @@
+package pj.neuralnetwork;
 public class Connection {
 	private double weight;
 	private double deltaWeight;

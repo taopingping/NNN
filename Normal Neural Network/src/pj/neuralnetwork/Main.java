@@ -1,3 +1,4 @@
+package pj.neuralnetwork;
 import java.util.Vector;
 
 public class Main {
